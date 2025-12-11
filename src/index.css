@@ -5,3 +5,7 @@
 body {
   @apply bg-brand-dark text-white;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
