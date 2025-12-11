@@ -5,6 +5,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import ProjectDetail from './pages/ProjectDetail'; 
+import ProjectsPage from './pages/ProjectsPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/project/:name" element={<ProjectDetail />} />        
       </Routes>
     </div>

@@ -1,7 +1,6 @@
 import Hero from '../components/Hero';
 import ProjectsSection from '../components/ProjectsSection';
 import SocialsSection from '../components/SocialsSection';
-import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 
 const Home = () => {
@@ -10,7 +9,6 @@ const Home = () => {
       <Hero />
       <ProjectsSection limit={6} />
       <SocialsSection />
-      <ContactSection />
       <Footer />
     </div>
   );
