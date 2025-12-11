@@ -1,4 +1,4 @@
-import { Mail, MessageCircle, MapPin, Clock, CheckCircle2, Github, Linkedin, Instagram, Youtube, Terminal } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, Clock, CheckCircle2, Github, Linkedin, Instagram, Youtube } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const TikTokIcon = ({ size = 20 }) => (
