@@ -46,7 +46,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-black to-slate-800',
     icon: <TikTokIcon size={32} />,
-    image: 'https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/d92f354cb6b253e2d821ea68d310dc93~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=77ba0a8a&x-expires=1765548000&x-signature=NrvJnK5%2FDBYHVjZmpQcyI%2FOjm4Y%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my'
+    image: 'https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/d92f354cb6b253e2d821ea68d310dc93~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=1788e6ba&x-expires=1765886400&x-signature=kC8qBO85qqEiZmSd%2BeYAKx4tlXE%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my'
   }
 ];
 
