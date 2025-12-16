@@ -16,7 +16,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-purple-500 via-pink-500 to-orange-500',
     icon: <Instagram size={32} />,
-    image: 'https://instagram.fesb7-1.fna.fbcdn.net/v/t51.2885-19/517579468_18317550196235258_1355293022315147132_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fesb7-1.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2QHKsufFigPSxhcdFKFKvT9fdfNEpNfOJYiQMWmHcdrdAJmElAar-S2oaUvNi1yEXTs&_nc_ohc=lal1EINH-hQQ7kNvwGJNp7Q&_nc_gid=ttMLrd6UFjKavfqT03xEKA&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AfmjCPrNSwBGpEivPTGhk-pDfLkiTyxPoW7EdI5MxlBBCA&oe=69473F15&_nc_sid=7a9f4b' 
+    image: '../public/ınstagram.jpg' 
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-blue-600 to-blue-800',
     icon: <Linkedin size={32} />,
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQFEB9DSgkpQkw/profile-displayphoto-scale_400_400/B56Zgiza0rHQAg-/0/1752930563563?e=1767225600&v=beta&t=A_A85tr7Yh-YYoortFUDRSZ0P4XlXye10I4qV516NjI'
+    image: '../public/linkedin.png'
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-red-600 to-red-800',
     icon: <Youtube size={32} />,
-    image: 'https://yt3.ggpht.com/uYXSWddKkqUBgi1oqnvSkwcUu4icdRFNvqLN8ETXKn4qVykrEu_cSBSzDRTIyKydi6J25JXl=s600-c-k-c0x00ffffff-no-rj-rp-mo'
+    image: '../public/yt.jpg'
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-black to-slate-800',
     icon: <TikTokIcon size={32} />,
-    image: 'https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/d92f354cb6b253e2d821ea68d310dc93~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=c823351e&x-expires=1766059200&x-signature=XtgokkMJFjf0DLWKwBak22iWmAg%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=sg1'
+    image: '../public/tiktok.jpeg'
   }
 ];
 
