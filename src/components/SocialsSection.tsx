@@ -16,7 +16,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-purple-500 via-pink-500 to-orange-500',
     icon: <Instagram size={32} />,
-    image: '../public/ınstagram.jpg' 
+    image: '/public/ınstagram.jpg' 
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-blue-600 to-blue-800',
     icon: <Linkedin size={32} />,
-    image: '../public/linkedin.png'
+    image: '/public/linkedin.png'
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-red-600 to-red-800',
     icon: <Youtube size={32} />,
-    image: '../public/yt.jpg'
+    image: '/public/yt.jpg'
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-black to-slate-800',
     icon: <TikTokIcon size={32} />,
-    image: '../public/tiktok.jpeg'
+    image: '/public/tiktok.jpeg'
   }
 ];
 
