@@ -16,7 +16,7 @@ const socialProfiles = [
     followers: '',
     color: 'from-purple-500 via-pink-500 to-orange-500',
     icon: <Instagram size={32} />,
-    image: 'https://instagram.fesb7-1.fna.fbcdn.net/v/t51.2885-19/517579468_18317550196235258_1355293022315147132_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fesb7-1.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2QEVw7z4hmZQBSqklqyPXGQmV8tZ1N5qw5HpfP1sMwPVxW1eo5LexVilnWhGL3sk8mY&_nc_ohc=lal1EINH-hQQ7kNvwGJNp7Q&_nc_gid=6EJ5UaniK_ZERG6UTrtxdw&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AflngwwF86r1lhTDgl-2TCOU2yIPh50Llskl6Lrkm6mxww&oe=69473F15&_nc_sid=7a9f4b' 
+    image: 'https://instagram.fesb7-1.fna.fbcdn.net/v/t51.2885-19/517579468_18317550196235258_1355293022315147132_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fesb7-1.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2QHKsufFigPSxhcdFKFKvT9fdfNEpNfOJYiQMWmHcdrdAJmElAar-S2oaUvNi1yEXTs&_nc_ohc=lal1EINH-hQQ7kNvwGJNp7Q&_nc_gid=ttMLrd6UFjKavfqT03xEKA&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AfmjCPrNSwBGpEivPTGhk-pDfLkiTyxPoW7EdI5MxlBBCA&oe=69473F15&_nc_sid=7a9f4b' 
   },
   {
     id: 2,
