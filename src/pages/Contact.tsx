@@ -32,7 +32,7 @@ const Contact = () => {
             <div className="relative z-10">
               <div className="w-24 h-24 rounded-2xl overflow-hidden mb-6 border-2 border-brand-primary/20 shadow-lg shadow-brand-primary/10">
                 <img 
-                  src="/assets/linkedin.png" 
+                  src="linkedin.png" 
                   alt="Profil" 
                   className="w-full h-full object-cover"
                 />
