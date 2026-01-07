@@ -32,7 +32,7 @@ const Contact = () => {
             <div className="relative z-10">
               <div className="w-24 h-24 rounded-2xl overflow-hidden mb-6 border-2 border-brand-primary/20 shadow-lg shadow-brand-primary/10">
                 <img 
-                  src="https://media.licdn.com/dms/image/v2/D5603AQFEB9DSgkpQkw/profile-displayphoto-scale_400_400/B56Zgiza0rHQAg-/0/1752930563563?e=1767225600&v=beta&t=A_A85tr7Yh-YYoortFUDRSZ0P4XlXye10I4qV516NjI" 
+                  src="public/linkedin.png" 
                   alt="Profil" 
                   className="w-full h-full object-cover"
                 />
