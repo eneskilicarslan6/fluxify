@@ -1,127 +1,141 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Github, Star, GitFork, ExternalLink, Loader2 } from 'lucide-react';
-
+import { ArrowLeft, Github, Star, GitFork, ExternalLink, Loader2, Code, Layers, Calendar } from 'lucide-react';
 
 const GITHUB_USERNAME = "eneskilicarslan6";
 
 const ProjectDetail = () => {
   const { name } = useParams();
   const [project, setProject] = useState<any>(null);
+  const [languages, setLanguages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [imgSrc, setImgSrc] = useState<string>("");
 
   useEffect(() => {
-    fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${name}`)
-      .then(async (res) => {
-        if (!res.ok) {
-           const errData = await res.json();
-           throw new Error(errData.message || "Proje bulunamadı");
+    const fetchData = async () => {
+      try {
+        const repoRes = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${name}`);
+        if (!repoRes.ok) throw new Error("Proje bulunamadı");
+        const repoData = await repoRes.json();
+        setProject(repoData);
+        if (repoData.name) {
+            setImgSrc(`/projects/${repoData.name.toLowerCase()}.png`);
         }
-        return res.json();
-      })
-      .then(data => {
-        setProject(data);
+
+        const langRes = await fetch(repoData.languages_url);
+        const langData = await langRes.json();
+        const totalBytes = Object.values(langData).reduce((a: any, b: any) => a + b, 0) as number;
+        const langStats = Object.keys(langData).map(key => ({
+            name: key,
+            percentage: ((langData[key] as number) / totalBytes * 100).toFixed(1),
+            color: getColorForLanguage(key)
+        }));
+        
+        setLanguages(langStats);
         setLoading(false);
-      })
-      .catch(err => {
-        console.error("Hata:", err);
+
+      } catch (err: any) {
         setError(err.message);
         setLoading(false);
-      });
+      }
+    };
+
+    if (name) fetchData();
   }, [name]);
 
+  const getColorForLanguage = (lang: string) => {
+    const colors: {[key: string]: string} = {
+        Python: '#3572A5', TypeScript: '#3178C6', JavaScript: '#F7DF1E', 
+        HTML: '#E34C26', CSS: '#563D7C', Vue: '#41B883', Shell: '#89e051'
+    };
+    return colors[lang] || '#00D1FF';
+  };
 
-  if (loading) return (
-    <div className="min-h-screen bg-brand-dark flex items-center justify-center text-brand-primary">
-        <Loader2 className="animate-spin w-10 h-10"/>
-    </div>
-  );
+  const handleImageError = () => {
+    setImgSrc(`https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop&random=${project?.id}`);
+  };
 
- 
-  if (error || !project) return (
-    <div className="min-h-screen bg-brand-dark text-white flex flex-col items-center justify-center gap-4">
-        <h2 className="text-2xl font-bold text-red-400">Bir Hata Oluştu</h2>
-        <p className="text-slate-400">{error === "Not Found" ? "Bu isimde bir proje GitHub hesabında bulunamadı." : error}</p>
-        <Link to="/" className="px-6 py-2 bg-brand-primary text-brand-dark rounded-full font-bold">Anasayfaya Dön</Link>
-    </div>
-  );
+  if (loading) return <div className="min-h-screen bg-brand-dark flex items-center justify-center text-brand-primary"><Loader2 className="animate-spin w-10 h-10"/></div>;
+  if (error) return <div className="min-h-screen bg-brand-dark text-white flex justify-center items-center">{error}</div>;
 
   return (
     <div className="min-h-screen bg-brand-dark text-white pt-24 pb-10 px-4">
-      <div className="max-w-4xl mx-auto">
-        
-
-        <Link to="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-primary mb-8 transition-colors">
-          <ArrowLeft size={20} /> Anasayfaya Dön
+      <div className="max-w-5xl mx-auto">
+        <Link to="/projects" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-primary mb-6 transition-colors">
+          <ArrowLeft size={20} /> Projelere Dön
         </Link>
 
-
-        <div className="relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 mb-8">
-            <div className="h-64 bg-gradient-to-r from-brand-dark to-brand-primary/20 relative">
-                 <img 
-                    src={`https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop&random=${project.id}`} 
-                    alt={project.name}
-                    className="w-full h-full object-cover opacity-50 mix-blend-overlay"
-                 />
-                 <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full bg-gradient-to-t from-brand-dark to-transparent">
-                    <h1 className="text-3xl md:text-5xl font-bold mb-2 text-white">{project.name.replace(/-/g, " ").toUpperCase()}</h1>
-                    <div className="flex gap-4 text-sm text-slate-300">
-                        <span className="flex items-center gap-1"><Star size={16} className="text-yellow-500" /> {project.stargazers_count} Yıldız</span>
-                        <span className="flex items-center gap-1"><GitFork size={16} /> {project.forks_count} Fork</span>
-                    </div>
-                 </div>
+        <div className="relative rounded-3xl overflow-hidden bg-white/5 border border-white/10 mb-10 h-[300px] md:h-[400px] group">
+            <img 
+                src={imgSrc}
+                onError={handleImageError}
+                alt={project.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent" />
+            
+            <div className="absolute bottom-0 left-0 p-8 w-full">
+                <h1 className="text-4xl md:text-6xl font-bold mb-3 text-white tracking-tight">{project.name.replace(/-/g, " ").toUpperCase()}</h1>
+                <div className="flex flex-wrap gap-4 text-sm font-medium">
+                    <span className="flex items-center gap-1 bg-white/10 px-3 py-1 rounded-full text-yellow-400 backdrop-blur-md">
+                        <Star size={16} fill="currentColor" /> {project.stargazers_count} Yıldız
+                    </span>
+                    <span className="flex items-center gap-1 bg-white/10 px-3 py-1 rounded-full text-blue-400 backdrop-blur-md">
+                        <GitFork size={16} /> {project.forks_count} Fork
+                    </span>
+                    <span className="flex items-center gap-1 bg-white/10 px-3 py-1 rounded-full text-slate-300 backdrop-blur-md">
+                        <Calendar size={16} /> {new Date(project.created_at).toLocaleDateString('tr-TR')}
+                    </span>
+                </div>
             </div>
-        </div>
-
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="md:col-span-2 space-y-6">
-                <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h2 className="text-xl font-bold mb-4 text-brand-primary">Proje Hakkında</h2>
+        </div>        
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div className="lg:col-span-2 space-y-8">
+                <div className="bg-white/5 p-8 rounded-2xl border border-white/10">
+                    <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                        <Code className="text-brand-primary" /> Proje Hakkında
+                    </h2>
                     <p className="text-slate-300 leading-relaxed text-lg">
-                        {project.description || "Bu proje için GitHub üzerinde bir açıklama girilmemiş."}
+                        {project.description || "Bu proje için özel bir açıklama girilmemiş."}
                     </p>
                 </div>
-            </div>
-
-
-            <div className="space-y-4">
-                <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h3 className="font-bold mb-4 border-b border-white/10 pb-2 text-white">Proje Bilgileri</h3>
-                    <div className="space-y-3 text-sm text-slate-300">
-                        <div className="flex justify-between">
-                            <span>Dil:</span>
-                            <span className="text-brand-primary font-bold">{project.language}</span>
+                {languages.length > 0 && (
+                    <div className="bg-white/5 p-8 rounded-2xl border border-white/10">
+                        <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-white">
+                            <Layers className="text-brand-primary" /> Kullanılan Teknolojiler
+                        </h2>
+                        <div className="flex h-4 rounded-full overflow-hidden w-full mb-4 bg-brand-dark border border-white/5">
+                            {languages.map((lang) => (
+                                <div key={lang.name} style={{ width: `${lang.percentage}%`, backgroundColor: lang.color }} className="h-full" title={`${lang.name}: %${lang.percentage}`} />
+                            ))}
                         </div>
-                        <div className="flex justify-between">
-                            <span>Oluşturulma:</span>
-                            <span>{new Date(project.created_at).toLocaleDateString('tr-TR')}</span>
+                        <div className="flex flex-wrap gap-4">
+                            {languages.map((lang) => (
+                                <div key={lang.name} className="flex items-center gap-2">
+                                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: lang.color }} />
+                                    <span className="text-slate-300 font-medium">{lang.name}</span>
+                                    <span className="text-slate-500 text-sm">%{lang.percentage}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                </div>
-
-                <a 
-                    href={project.html_url} 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-secondary transition-colors"
-                >
-                    <Github size={20} />
-                    GitHub'da İncele
-                </a>
-
-                {project.homepage && (
-                    <a 
-                        href={project.homepage} 
-                        target="_blank" 
-                        rel="noreferrer"
-                        className="flex items-center justify-center gap-2 w-full py-4 bg-white/5 text-white font-bold rounded-xl hover:bg-white/10 border border-white/10 transition-colors"
-                    >
-                        <ExternalLink size={20} />
-                        Canlı Siteye Git
-                    </a>
                 )}
+            </div>
+            <div className="space-y-6">
+                <div className="bg-white/5 p-6 rounded-2xl border border-white/10 sticky top-24">
+                    <h3 className="font-bold mb-4 text-white">Kaynak Kodlar</h3>
+                    <div className="space-y-3">
+                        <a href={project.html_url} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-secondary transition-colors">
+                            <Github size={20} /> GitHub'da İncele
+                        </a>
+                        {project.homepage && (
+                            <a href={project.homepage} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-4 bg-white/5 text-white font-bold rounded-xl hover:bg-white/10 border border-white/10 transition-colors">
+                                <ExternalLink size={20} /> Canlı Siteyi Gör
+                            </a>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
 

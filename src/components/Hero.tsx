@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Code2, Terminal, Cpu } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
@@ -96,25 +96,6 @@ const Hero = () => {
             İletişime Geç
           </Link>
         </motion.div>
-
-        {   }
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="mt-20 pt-10 border-t border-white/5 flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500"
-        >
-            <div className="flex items-center gap-2 text-slate-300">
-                <Terminal className="w-6 h-6" /> <span>Python</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-300">
-                <Code2 className="w-6 h-6" /> <span>Web Develop</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-300">
-                <Cpu className="w-6 h-6" /> <span>Anothers</span>
-            </div>
-        </motion.div>
-
       </div>
     </div>
   );

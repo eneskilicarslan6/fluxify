@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { Github, ExternalLink, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-
 
 interface Project {
   id: number;
@@ -19,8 +19,12 @@ interface ProjectCardProps {
   project: Project;
 }
 
-
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const [imgSrc, setImgSrc] = useState(`/projects/${project.repoName.toLowerCase()}.png`);
+  const handleImageError = () => {
+    setImgSrc(project.imageUrl);
+  };
+
   return (
     <motion.div
       layout
@@ -31,11 +35,14 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     >
       <Link to={`/project/${project.repoName}`} className="block relative h-48 overflow-hidden">
         <div className="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent transition-colors z-10" />
+        
         <img
-          src={project.imageUrl}
+          src={imgSrc}
+          onError={handleImageError}
           alt={project.title}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
         />
+        
         <div className="absolute top-4 right-4 z-20 bg-brand-dark/80 backdrop-blur px-3 py-1 rounded-full border border-white/10">
             <span className="text-xs font-bold text-brand-primary uppercase">
                 {project.category}

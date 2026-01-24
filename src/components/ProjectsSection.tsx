@@ -126,7 +126,6 @@ const ProjectsSection = ({ limit, title }: ProjectsSectionProps) => {
                 </div>
             )}
 
-            {/* Kartlar */}
             <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <AnimatePresence>
                 {displayedProjects.map((project) => (
