@@ -38,7 +38,7 @@ const Contact = () => {
                 />
               </div>
               <h2 className="text-2xl font-bold text-white mb-1">Enes Kılıçarslan</h2>
-              <p className="text-brand-primary font-medium mb-6">Full Stack Developer & Python Uzmanı</p>
+              <p className="text-brand-primary font-medium mb-6">Full Web Stack Developer & Python</p>
               <div className="space-y-4 mb-8 text-slate-300 leading-relaxed text-sm">
                 <p>
                   Merhaba! Ben dijital çözümler üreten bir yazılımcıyım. 
