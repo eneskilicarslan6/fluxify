@@ -20,7 +20,7 @@ const ProjectDetail = () => {
         const repoData = await repoRes.json();
         setProject(repoData);
         if (repoData.name) {
-            setImgSrc(`/projects/${repoData.name.toLowerCase()}.png`);
+            setImgSrc(`/projects/${repoData.name}.png`);
         }
 
         const langRes = await fetch(repoData.languages_url);
@@ -53,6 +53,11 @@ const ProjectDetail = () => {
   };
 
   const handleImageError = () => {
+        const lowercaseSrc = `/projects/${project?.name?.toLowerCase()}.png`;
+        if (project?.name && imgSrc !== lowercaseSrc) {
+            setImgSrc(lowercaseSrc);
+            return;
+        }
     setImgSrc(`https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop&random=${project?.id}`);
   };
 

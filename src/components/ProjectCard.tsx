@@ -20,8 +20,13 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
-  const [imgSrc, setImgSrc] = useState(`/projects/${project.repoName.toLowerCase()}.png`);
+  const [imgSrc, setImgSrc] = useState(`/projects/${project.repoName}.png`);
   const handleImageError = () => {
+    const lowercaseSrc = `/projects/${project.repoName.toLowerCase()}.png`;
+    if (imgSrc !== lowercaseSrc) {
+      setImgSrc(lowercaseSrc);
+      return;
+    }
     setImgSrc(project.imageUrl);
   };
 
